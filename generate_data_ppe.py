@@ -14,8 +14,8 @@ parser = argparse.ArgumentParser(
 parser.add_argument('--input_images',default= "datasets/person_dataset/images/")   
 parser.add_argument('--input_person_labels',default= "datasets/person_dataset/labels/")   
 parser.add_argument('--input_ppe_labels',default= "datasets/labels_ppe_all/")   
-parser.add_argument('--cropped_images',default= "datasets/ppe_dataset/cropped_images/")          
-parser.add_argument('--output_ppe_labels',default= "datasets/ppe_dataset/output_labels_ppe/")    
+parser.add_argument('--cropped_images',default= "datasets/ppe_dataset/images/")          
+parser.add_argument('--output_ppe_labels',default= "datasets/ppe_dataset/labels/")    
 parser.add_argument('--ground_truth_vis',default= "datasets/ppe_dataset/ground_truth_vis/")   
 
 args = parser.parse_args()

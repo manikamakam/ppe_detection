@@ -1,6 +1,6 @@
 path: ''
-train: datasets/person_dataset/images/
-val: datasets/person_dataset/images/
+train: person_dataset/images/
+val: person_dataset/images/
 
 nc: 1
 names:

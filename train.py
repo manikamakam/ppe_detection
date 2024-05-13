@@ -7,11 +7,11 @@ parser = argparse.ArgumentParser(
                     epilog='train script')
 
 parser.add_argument('--yaml',type = str, default= "ppe_detection_data.yaml")   #use 'person_detection_data.yaml' for person detection
-parser.add_argument('--model',type = str, default= "yolov8s.pt")                  # choose 'yolov8n.pt' or 'yolov8s.pt' or 'yolov8m.pt'
+parser.add_argument('--model',type = str, default= "yolov8m.pt")                  # choose 'yolov8n.pt' or 'yolov8s.pt' or 'yolov8m.pt'
 parser.add_argument('--image_size',type = int, default= 640)      
-parser.add_argument('--epochs',type = int, default= 100)      
-parser.add_argument('--batch_size',type = int, default= 1)     
-parser.add_argument('--name',type = str, default= 'yolov8s_ppe')               # choose name coresponding to model chosen; results will be stored in this folder name
+parser.add_argument('--epochs',type = int, default= 200)      
+parser.add_argument('--batch_size',type = int, default= 8)     
+parser.add_argument('--name',type = str, default= 'yolov8m_ppe')               # choose name coresponding to model chosen; results will be stored in this folder name
 
 args = parser.parse_args()
 
