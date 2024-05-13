@@ -1,0 +1,15 @@
+path: ''
+train: ppe_dataset/images/
+val: ppe_dataset/images/
+
+nc: 9
+names:
+  0: hard-hat
+  1: gloves
+  2: mask
+  3: glasses
+  4: boots
+  5: vest
+  6: ppe-suit
+  7: ear-protector
+  8: safety-harness

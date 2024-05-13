@@ -1,0 +1,7 @@
+datasets/
+yolov8m.pt
+yolov8n.pt
+yolov8s.pt
+weight/
+runs/
+output/

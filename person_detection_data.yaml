@@ -1,0 +1,7 @@
+path: ''
+train: datasets/person_dataset/images/
+val: datasets/person_dataset/images/
+
+nc: 1
+names:
+  0: 'person'

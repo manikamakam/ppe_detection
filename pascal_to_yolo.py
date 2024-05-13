@@ -1,0 +1,78 @@
+import glob
+import os
+import xml.etree.ElementTree as ET
+import argparse
+
+parser = argparse.ArgumentParser(
+                    prog='Pascal VOC format to YOLO format',
+                    description='Run script to convert annotations from pascal format to yolo format',
+                    epilog='VOC to YOLO')
+
+parser.add_argument('--input_images',default= "datasets/images/")   
+parser.add_argument('--input_labels',default= "datasets/labels_voc/")           
+parser.add_argument('--output_path',default= "datasets/labels_yolo/")      
+
+args = parser.parse_args()
+
+classes = ['hard-hat', 'gloves', 'mask','glasses', 'boots', 'vest', 'ppe-suit']
+# classes = ['person']
+
+def getImagesInDir(dir_path):
+    image_list = []
+    for filename in glob.glob(dir_path + '/*.jpg'):
+        image_list.append(filename)
+
+    return image_list
+
+def convert(size, box):
+    dw = 1./(size[0])
+    dh = 1./(size[1])
+    x = (box[0] + box[1])/2.0 - 1
+    y = (box[2] + box[3])/2.0 - 1
+    w = box[1] - box[0]
+    h = box[3] - box[2]
+    x = x*dw
+    w = w*dw
+    y = y*dh
+    h = h*dh
+    return (x,y,w,h)
+
+def convert_annotation(dir_path, output_path, image_path):
+    basename = os.path.basename(image_path)
+    basename_no_ext = os.path.splitext(basename)[0]
+    # dir = dir_path.split('/')[0]
+    in_file = open(dir_path +  basename_no_ext + '.xml')
+    out_file = open(output_path + basename_no_ext + '.txt', 'w')
+    tree = ET.parse(in_file)
+    root = tree.getroot()
+    size = root.find('size')
+    w = int(size.find('width').text)
+    h = int(size.find('height').text)
+
+    for obj in root.iter('object'):
+        # difficult = obj.find('difficult').text
+        cls = obj.find('name').text
+        # if cls not in classes or int(difficult)==1:
+        if cls not in classes:
+            continue
+        cls_id = classes.index(cls)
+        xmlbox = obj.find('bndbox')
+        b = (float(xmlbox.find('xmin').text), float(xmlbox.find('xmax').text), float(xmlbox.find('ymin').text), float(xmlbox.find('ymax').text))
+        bb = convert((w,h), b)
+        out_file.write(str(cls_id) + " " + " ".join([str(a) for a in bb]) + '\n')
+
+
+if not os.path.exists(args.output_path):
+    os.makedirs(args.output_path)
+
+image_paths = getImagesInDir(args.input_images)
+list_file = open(args.input_images + '.txt', 'w')
+
+# print(image_paths)
+for image_path in image_paths:
+    print(image_path)
+    list_file.write(image_path + '\n')
+    convert_annotation(args.input_labels, args.output_path, image_path)
+list_file.close()
+
+print("Finished processing: " + args.input_labels)
