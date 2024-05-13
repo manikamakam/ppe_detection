@@ -10,7 +10,7 @@ parser = argparse.ArgumentParser(
                     description='Run inference from two models and save results',
                     epilog='PPE Detection')
 
-parser.add_argument('--input_dir',default= "datasets/person_dataset/images/")           
+parser.add_argument('--input_dir',default= "datasets/images/")           
 parser.add_argument('--output_dir',default= "output/")      
 parser.add_argument('--person_model',default= "weights/best_person.pt")           
 parser.add_argument('--ppe_model',default= "weights/best_ppe.pt") 

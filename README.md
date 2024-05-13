@@ -4,10 +4,10 @@ This codebase is for Person Detection and followed by PPE Detection
 
 ## Generating required dataset for both the tasks
 
-1. The provided labels are in Pascal VOC format. So, "pascal_to_yolo.py" script can be used to convert the labels to yolo format.
+1. The provided labels are in Pascal VOC format. So, "pascalVOC_to_yolo.py" script can be used to convert the labels to yolo format.
 2. Generate labels for person detection using below command -
  ```
-python3 pascal_to_yolo.py --input_images datasets/images/ --input_labels datasets/labels/ --output_path datasets/person_dataset/labels/
+python3 pascalVOC_to_yolo.py --input_images datasets/images/ --input_labels datasets/labels/ --output_path datasets/person_dataset/labels/
 ```
 3. Copy the "datasets/images" folder to datasets/person_dataset/. So the dataset structure for person detection is
 ```
@@ -18,9 +18,9 @@ datasets
 ```
 4.  For PPE Detection, we want to train the model on cropped images. So, we need to generate labels for such cropped images as well. For this purpose, I first convert ppe labels from voc format to yolo and save it in labels_ppe_all, use the command as below
 ```
-   python3 pascal_to_yolo.py --input_images datasets/images/ --input_labels datasets/labels/ --output_path datasets/labels_ppe_all/
+   python3 pascalVOC_to_yolo.py --input_images datasets/images/ --input_labels datasets/labels/ --output_path datasets/labels_ppe_all/
 ```
-Be sure to comment line 17 in "pascal_to_yolo.py" and uncomment line 19 before running the above command.
+Be sure to comment line 17 in "pascalVOC_to_yolo.py" and uncomment line 19 before running the above command.
 
 5. To generate cropped images and corresponding labels for PPE detection, run below command
 

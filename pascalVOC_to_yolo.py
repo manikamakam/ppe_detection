@@ -8,14 +8,15 @@ parser = argparse.ArgumentParser(
                     description='Run script to convert annotations from pascal format to yolo format',
                     epilog='VOC to YOLO')
 
-parser.add_argument('--input_images',default= "datasets/person_dataset/images/")   
-parser.add_argument('--input_labels',default= "datasets/labels_voc/")           
-parser.add_argument('--output_path',default= "datasets/labels_ppe_all/")      
+parser.add_argument('--input_images',default= "datasets/images/")   
+parser.add_argument('--input_labels',default= "datasets/labels/")           
+parser.add_argument('--output_path',default= "datasets/person_dataset/labels/")      
 
 args = parser.parse_args()
 
-classes = ['hard-hat', 'gloves', 'mask','glasses', 'boots', 'vest', 'ppe-suit', 'ear-protector','safety-harness' ]
-# classes = ['person']
+classes = ['person']                                                                                                    # used for generating person_dataset/labels folder
+# classes = ['hard-hat', 'gloves', 'mask','glasses', 'boots', 'vest', 'ppe-suit']                                       # used for generating labels_ppe_selected folder
+# classes = ['hard-hat', 'gloves', 'mask','glasses', 'boots', 'vest', 'ppe-suit', 'ear-protector','safety-harness' ]    # used for generating labels_ppe_all folder
 
 def getImagesInDir(dir_path):
     image_list = []

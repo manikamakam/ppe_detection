@@ -2,6 +2,6 @@ datasets/
 yolov8m.pt
 yolov8n.pt
 yolov8s.pt
-weight/
+weights/
 runs/
 output/
