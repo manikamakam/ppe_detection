@@ -1,4 +1,4 @@
-# Person and PPE Deetction
+# Person and PPE Detection
 
 This codebase is for Person Detection and followed by PPE Detection 
 
